@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagonal Atom Loading Page</title>
+  <style>
+    /* Basic setup */
+    body, html {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #0d0c1d;
+      overflow: hidden;
+    }
+
+    /* Stars animation */
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-image: radial-gradient(2px 2px at 20% 20%, #fff, transparent),
+                        radial-gradient(2px 2px at 40% 80%, #fff, transparent),
+                        radial-gradient(2px 2px at 70% 30%, #fff, transparent),
+                        radial-gradient(2px 2px at 90% 50%, #fff, transparent),
+                        radial-gradient(2px 2px at 30% 60%, #fff, transparent),
+                        radial-gradient(2px 2px at 50% 90%, #fff, transparent),
+                        radial-gradient(2px 2px at 80% 70%, #fff, transparent),
+                        radial-gradient(2px 2px at 10% 40%, #fff, transparent);
+      animation: starMovement 10s linear infinite;
+    }
+
+    @keyframes starMovement {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Atom structure */
+    .atom {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(45deg); /* Diagonal rotation */
+    }
+
+    /* Nucleus */
+    .nucleus {
+      width: 20px;
+      height: 20px;
+      background-color: #ffcc00;
+      border-radius: 50%;
+    }
+
+    /* Electron orbits */
+    .orbit {
+      position: absolute;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      animation: orbitRotate 3s linear infinite;
+    }
+
+    .orbit.one {
+      width: 70px;
+      height: 70px;
+    }
+
+    .orbit.two {
+      width: 90px;
+      height: 90px;
+      animation-duration: 4s;
+    }
+
+    /* Electrons */
+    .electron {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #3498db;
+      border-radius: 50%;
+    }
+
+    .orbit.one .electron {
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .orbit.two .electron {
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Orbit rotation animation */
+    @keyframes orbitRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Loading text */
+    .loading-text {
+      color: #fff;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      position: absolute;
+      top: 60%;
+      z-index: 2;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    /* Blinking text animation */
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+
+    /* Hidden link */
+    .delayed-link {
+      display: none; /* Initially hidden */
+      color: #ffcc00;
+      font-size: 18px;
+      margin-top: 20px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      z-index: 2;
+    }
+
+    .delayed-link:hover {
+      color: #ffeb3b;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="atom">
+    <div class="nucleus"></div>
+    <div class="orbit one">
+      <div class="electron"></div>
+    </div>
+    <div class="orbit two">
+      <div class="electron"></div>
+    </div>
+  </div>
+  <div class="loading-text" id="loading-text">Powering Up...</div>
+  <!-- Hidden link that appears after 5 seconds -->
+  <a href="https://sh16coder.github.io/vazeer-classes-yt/" class="delayed-link" id="delayed-link">Continue to the Site</a>
+
+  <script>
+    // Display the link after 5 seconds and hide the loading text
+    setTimeout(() => {
+      document.getElementById('delayed-link').style.display = 'block';
+      document.getElementById('loading-text').style.display = 'none';
+    }, 5000);
+  </script>
+</body>
+</html>
